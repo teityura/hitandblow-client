@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace MyButton
 {
-    public class StandardButton : Button
+    public class ActionButton : Button
     {
         private Action callback = null;
 

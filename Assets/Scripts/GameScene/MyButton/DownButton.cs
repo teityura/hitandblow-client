@@ -7,11 +7,11 @@ namespace MyButton
         [SerializeField]
         private int numberIndex = -1;
 
-        private StandardButton standardButton = null;
+        private ActionButton standardButton = null;
 
         private void Awake()
         {
-            standardButton = GetComponent<StandardButton>();
+            standardButton = GetComponent<ActionButton>();
         }
 
         private void Start()
