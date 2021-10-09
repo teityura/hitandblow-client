@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using HitBlow.Manager;
 
-namespace MyButton
+namespace HitBlow.MyButton
 {
     public class UpButton : MonoBehaviour
     {
@@ -21,9 +22,9 @@ namespace MyButton
 
         private void Up()
         {
-            int currentNumber = NumberManager.I.GetNumber(numberIndex);
+            int currentNumber = NumberManager.GetNumber(numberIndex);
             int nextNumber = (currentNumber == 9) ? 0 : currentNumber + 1;
-            NumberManager.I.SetNumber(numberIndex, nextNumber);
+            NumberManager.SetNumber(numberIndex, nextNumber);
         }
     }
 }

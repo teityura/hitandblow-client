@@ -1,27 +1,25 @@
-﻿// using UnityEngine;
-// using UnityEngine.UI;
+﻿using UnityEngine;
+using HitBlow.Manager;
 
-// public class SubmitButton : MonoBehaviour
-// {
-//     [SerializeField]
-//     private Image targetImage = null;
+namespace HitBlow.MyButton
+{
+    public class SubmitButton : MonoBehaviour
+    {
+        private ActionButton standardButton = null;
 
-//     private StandardButton standardButton = null;
-//     private int currentNumber = 0;
+        private void Awake()
+        {
+            standardButton = GetComponent<ActionButton>();
+        }
 
-//     private void Awake()
-//     {
-//         standardButton = GetComponent<StandardButton>();
-//     }
+        private void Start()
+        {
+            standardButton.OnClick(() => Submit());
+        }
 
-//     private void Start()
-//     {
-//         standardButton.OnClick(() => Down());
-//     }
-
-//     private void Down()
-//     {
-//         currentNumber = (currentNumber == 0) ? 9 : currentNumber - 1;
-//     }
-// }
-
+        private void Submit()
+        {
+            GameManager.SetSubmit(true);
+        }
+    }
+}

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.UI;
 
-namespace MyButton
+namespace HitBlow.MyButton
 {
     public class ActionButton : Button
     {
