@@ -1,14 +1,33 @@
-﻿using UnityEngine;
-
-namespace HitBlow.Manager
+﻿namespace HitBlow.Manager
 {
-    public class GameManager : MonoBehaviour
+    public static class GameManager
     {
-        public static bool IsSubmitted { get; private set; } = false;
-
-        public static void SetSubmit(bool value)
+        public enum GAME_PHASE
         {
-            IsSubmitted = value;
+            START,
+            INPUT,
+            OUTPUT,
+            END,
+        }
+
+        private static readonly int maxTurn = 10;
+        private static int currentTurn = 0;
+
+        public static GAME_PHASE GamePhase { get; private set; } = GAME_PHASE.INPUT;
+
+        public static void SetGamePhase(GAME_PHASE phase)
+        {
+            GamePhase = phase;
+
+            if (phase == GAME_PHASE.OUTPUT)
+            {
+                NextTurn();
+            }
+        }
+
+        private static void NextTurn()
+        {
+            currentTurn += 1;
         }
     }
 }

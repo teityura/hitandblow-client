@@ -16,8 +16,21 @@ namespace HitBlow.Manager
 
         void Update()
         {
-            RefreshInputPanels();
-            RefreshOutputPanels();
+            GameManager.GAME_PHASE phase = GameManager.GamePhase;
+
+            switch(phase)
+            {
+                case GameManager.GAME_PHASE.INPUT:
+                    RefreshInputPanels();
+                    // NOTE: Submitボタンで、OUTPUTフェーズに切り替えている
+                    break;
+                case GameManager.GAME_PHASE.OUTPUT:
+                    RefreshOutputPanels();
+                    GameManager.SetGamePhase(GameManager.GAME_PHASE.INPUT);
+                    break;
+                default:
+                    return;
+            }
         }
 
         private void RefreshInputPanels()
@@ -31,27 +44,23 @@ namespace HitBlow.Manager
 
         private void RefreshOutputPanels()
         {
-            if (GameManager.IsSubmitted)
+            GameObject instantiatedObject = Instantiate(answeredNumberPanelPrefab, answeredNumberPanelPrefabParent);
+            AnsweredNumberPanel answeredNumberPanel = instantiatedObject.GetComponent<AnsweredNumberPanel>();
+
+            Sprite hitNumberSprite = SpriteManager.GetNumberSprite(0);
+            Sprite blowNumberSprite = SpriteManager.GetNumberSprite(0);
+
+            int[] inputNumbers = NumberManager.GetNumbers();
+            Sprite[] answeredNumberSprites = new Sprite[inputNumbers.Length];
+
+            for (int i=0; i<inputNumbers.Length; i++)
             {
-                var go = Instantiate(answeredNumberPanelPrefab, answeredNumberPanelPrefabParent);
-                AnsweredNumberPanel answeredNumberPanel = go.GetComponent<AnsweredNumberPanel>();
-
-                Sprite hitNumberSprite = SpriteManager.GetNumberSprite(0);
-                Sprite blowNumberSprite = SpriteManager.GetNumberSprite(0);
-
-                int[] inputNumbers = NumberManager.GetNumbers();
-                Sprite[] answeredNumberSprites = new Sprite[inputNumbers.Length];
-
-                for (int i=0; i<inputNumbers.Length; i++)
-                {
-                    answeredNumberSprites[i] = SpriteManager.GetNumberSprite(inputNumbers[i]);
-                }
-
-                answeredNumberPanel.SetAnsweredNumberImages(answeredNumberSprites);
-                answeredNumberPanel.SetHitNumberImage(hitNumberSprite);
-                answeredNumberPanel.SetBlowNumberImage(blowNumberSprite);
-                GameManager.SetSubmit(false);
+                answeredNumberSprites[i] = SpriteManager.GetNumberSprite(inputNumbers[i]);
             }
+
+            answeredNumberPanel.SetAnsweredNumberImages(answeredNumberSprites);
+            answeredNumberPanel.SetHitNumberImage(hitNumberSprite);
+            answeredNumberPanel.SetBlowNumberImage(blowNumberSprite);
         }
     }
 }

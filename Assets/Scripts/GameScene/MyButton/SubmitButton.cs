@@ -19,7 +19,7 @@ namespace HitBlow.MyButton
 
         private void Submit()
         {
-            GameManager.SetSubmit(true);
+            GameManager.SetGamePhase(GameManager.GAME_PHASE.OUTPUT);
         }
     }
 }
