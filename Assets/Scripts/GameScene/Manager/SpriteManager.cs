@@ -8,20 +8,25 @@ namespace HitBlow.Manager
         private Sprite[] numberSpritesSerialized = null;
 
         [SerializeField]
-        private Sprite[] hitNumberSpritesSerialized = null;
+        private Sprite[] hitBlowNumberSpritesSerialized = null;
 
         private static Sprite[] numberSprites = null;
-        private static Sprite[] hitNumberSprites = null;
+        private static Sprite[] hitBlowNumberSprites = null;
 
         private void Awake()
         {
             numberSprites = numberSpritesSerialized;
-            hitNumberSprites = hitNumberSpritesSerialized;
+            hitBlowNumberSprites = hitBlowNumberSpritesSerialized;
         }
 
         public static Sprite GetNumberSprite(int number)
         {
             return numberSprites[number];
+        }
+
+        public static Sprite GetHitBlowNumberSprite(int number)
+        {
+            return hitBlowNumberSprites[number];
         }
     }
 }

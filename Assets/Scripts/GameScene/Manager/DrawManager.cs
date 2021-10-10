@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace HitBlow.Manager
 {
@@ -20,6 +21,11 @@ namespace HitBlow.Manager
 
             switch(phase)
             {
+                // TODO: SetAnswerNumbers() を他のクラスでやらせる
+                case GameManager.GAME_PHASE.START:
+                    NumberManager.SetAnswerNumbers();
+                    GameManager.SetGamePhase(GameManager.GAME_PHASE.INPUT);
+                    break;
                 case GameManager.GAME_PHASE.INPUT:
                     RefreshInputPanels();
                     // NOTE: Submitボタンで、OUTPUTフェーズに切り替えている
@@ -44,23 +50,41 @@ namespace HitBlow.Manager
 
         private void RefreshOutputPanels()
         {
+            // AnsweredNumberPanelを生成
             GameObject instantiatedObject = Instantiate(answeredNumberPanelPrefab, answeredNumberPanelPrefabParent);
             AnsweredNumberPanel answeredNumberPanel = instantiatedObject.GetComponent<AnsweredNumberPanel>();
 
-            Sprite hitNumberSprite = SpriteManager.GetNumberSprite(0);
-            Sprite blowNumberSprite = SpriteManager.GetNumberSprite(0);
+            // Inputで入力した4ケタを描画
+            RefreshAnsweredNumber(answeredNumberPanel);
 
-            int[] inputNumbers = NumberManager.GetNumbers();
-            Sprite[] answeredNumberSprites = new Sprite[inputNumbers.Length];
+            // Hit, Blow数を描画
+            RefreshHitBlowNumber(answeredNumberPanel);
+        }
 
-            for (int i=0; i<inputNumbers.Length; i++)
+        private void RefreshAnsweredNumber(AnsweredNumberPanel panel)
+        {
+            List<int> inputNumbers = NumberManager.GetNumbers();
+            Sprite[] answeredNumberSprites = new Sprite[inputNumbers.Count];
+
+            for (int i=0; i<inputNumbers.Count; i++)
             {
                 answeredNumberSprites[i] = SpriteManager.GetNumberSprite(inputNumbers[i]);
             }
 
-            answeredNumberPanel.SetAnsweredNumberImages(answeredNumberSprites);
-            answeredNumberPanel.SetHitNumberImage(hitNumberSprite);
-            answeredNumberPanel.SetBlowNumberImage(blowNumberSprite);
+            panel.SetAnsweredNumberImages(answeredNumberSprites);
+        }
+
+        private void RefreshHitBlowNumber(AnsweredNumberPanel panel)
+        {
+            int hit = NumberManager.GetHitNumber();
+            int blow = NumberManager.GetBlowNumber();
+            Debug.Log($"hit: {hit}, blow: {blow}");
+
+            Sprite hitNumberSprite = SpriteManager.GetHitBlowNumberSprite(hit);
+            Sprite blowNumberSprite = SpriteManager.GetHitBlowNumberSprite(blow);
+
+            panel.SetHitNumberImage(hitNumberSprite);
+            panel.SetBlowNumberImage(blowNumberSprite);
         }
     }
 }

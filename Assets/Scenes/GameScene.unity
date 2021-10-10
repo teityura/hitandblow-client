@@ -1090,7 +1090,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 50a1dc15ef969174282c2a9d3f41293a, type: 3}
   - {fileID: 21300000, guid: b613c09c52788f04c874357e6b6be03d, type: 3}
   - {fileID: 21300000, guid: f1620d0b630f6d04c9c4bb5b0f12888e, type: 3}
-  hitNumberSpritesSerialized:
+  hitBlowNumberSpritesSerialized:
   - {fileID: 21300000, guid: bc88ccbca574fcf4fbbeadee05e182a3, type: 3}
   - {fileID: 21300000, guid: 3f206bad331d4b34b9b09adf93e68094, type: 3}
   - {fileID: 21300000, guid: 21efbecbc2f1f1348a56ddae6473523f, type: 3}
