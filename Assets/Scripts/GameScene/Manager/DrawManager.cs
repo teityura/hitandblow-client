@@ -15,6 +15,9 @@ namespace HitBlow.Manager
         [SerializeField]
         Transform answeredNumberPanelPrefabParent = null;
 
+        [SerializeField]
+        private InformationPanel informationPanel = null;
+
         void Update()
         {
             GameManager.GAME_PHASE phase = GameManager.GamePhase;
@@ -32,6 +35,7 @@ namespace HitBlow.Manager
                     break;
                 case GameManager.GAME_PHASE.OUTPUT:
                     RefreshOutputPanels();
+                    RefreshInformationPanel();
                     GameManager.SetGamePhase(GameManager.GAME_PHASE.INPUT);
                     break;
                 default:
@@ -85,6 +89,15 @@ namespace HitBlow.Manager
 
             panel.SetHitNumberImage(hitNumberSprite);
             panel.SetBlowNumberImage(blowNumberSprite);
+        }
+
+        private void RefreshInformationPanel()
+        {
+            int currentTurn = GameManager.CurrentTurn;
+            int currentPlayer = currentTurn % 2 + 1;
+
+            informationPanel.SetTurnCounter(currentTurn);
+            informationPanel.SetCurrentPlayer(currentPlayer);
         }
     }
 }

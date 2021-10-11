@@ -11,7 +11,7 @@
         }
 
         private static readonly int maxTurn = 10;
-        private static int currentTurn = 0;
+        public static int CurrentTurn { private set; get; } = 0;
 
         public static GAME_PHASE GamePhase { get; private set; } = GAME_PHASE.INPUT;
 
@@ -27,7 +27,7 @@
 
         private static void NextTurn()
         {
-            currentTurn += 1;
+            CurrentTurn += 1;
         }
     }
 }
