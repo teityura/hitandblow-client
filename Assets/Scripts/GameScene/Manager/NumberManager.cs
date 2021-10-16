@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HitBlow.Manager
 {
@@ -25,11 +26,7 @@ namespace HitBlow.Manager
             }
 
             // DEBUG answerNumbers
-            for (int i=0; i<answerNumbers.Count; i++)
-            {
-                var listValue = answerNumbers[i];
-                Debug.Log($"answerNumbers[{i}]: {listValue}");
-            }
+            Debug.Log("answerNumbers: " + string.Join("", answerNumbers.Select(num => num.ToString())));
 
             return answerNumbers;
         }
