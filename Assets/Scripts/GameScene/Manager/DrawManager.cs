@@ -82,7 +82,6 @@ namespace HitBlow.Manager
         {
             int hit = NumberManager.GetHitNumber();
             int blow = NumberManager.GetBlowNumber();
-            Debug.Log($"hit: {hit}, blow: {blow}");
 
             Sprite hitNumberSprite = SpriteManager.GetHitBlowNumberSprite(hit);
             Sprite blowNumberSprite = SpriteManager.GetHitBlowNumberSprite(blow);
@@ -94,7 +93,7 @@ namespace HitBlow.Manager
         private void RefreshInformationPanel()
         {
             int currentTurn = GameManager.CurrentTurn;
-            int currentPlayer = currentTurn % 2 + 1;
+            int currentPlayer = GameManager.CurrentPlayer;
 
             informationPanel.SetTurnCounter(currentTurn);
             informationPanel.SetCurrentPlayer(currentPlayer);

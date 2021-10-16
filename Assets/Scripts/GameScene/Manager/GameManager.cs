@@ -12,6 +12,7 @@
 
         private static readonly int maxTurn = 10;
         public static int CurrentTurn { private set; get; } = 0;
+        public static int CurrentPlayer { private set; get; } = 0;
 
         public static GAME_PHASE GamePhase { get; private set; } = GAME_PHASE.INPUT;
 
@@ -21,14 +22,21 @@
 
             if (phase == GAME_PHASE.OUTPUT)
             {
-                NextTurn();
+                SetNextTurn();
+                SetCurrentPlayer();
             }
         }
 
-        private static void NextTurn()
+        private static void SetNextTurn()
         {
             CurrentTurn += 1;
         }
+
+        private static void SetCurrentPlayer()
+        {
+            CurrentPlayer = CurrentTurn % 2 + 1;
+        }
+
     }
 }
 
