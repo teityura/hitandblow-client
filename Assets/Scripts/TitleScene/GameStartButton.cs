@@ -14,7 +14,7 @@ namespace HitBlow.MyButton
 
         private void Start()
         {
-            standardButton.OnClick(() => SceneManager.LoadScene("GameScene"));
+            standardButton.OnClick(() => SceneManager.LoadScene("LobbyScene"));
         }
     }
 }
