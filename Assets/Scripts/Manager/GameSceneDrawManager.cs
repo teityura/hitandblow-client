@@ -24,9 +24,7 @@ namespace HitBlow.Manager
 
             switch(phase)
             {
-                // TODO: SetAnswerNumbers() を他のクラスでやらせる
                 case GameManager.GAME_PHASE.GAME_START:
-                    NumberManager.SetAnswerNumbers();
                     GameManager.SetGamePhase(GameManager.GAME_PHASE.GAME_INPUT);
                     break;
                 case GameManager.GAME_PHASE.GAME_INPUT:
