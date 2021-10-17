@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using HitBlow.Manager;
 
 namespace HitBlow.MyButton
 {
@@ -14,7 +15,13 @@ namespace HitBlow.MyButton
 
         private void Start()
         {
-            standardButton.OnClick(() => SceneManager.LoadScene("LobbyScene"));
+            standardButton.OnClick(() =>ToLobbyScene());
+        }
+
+        private void ToLobbyScene()
+        {
+            SceneManager.LoadScene("LobbyScene");
+            GameManager.SetGamePhase(GameManager.GAME_PHASE.LOBBY_START);
         }
     }
 }

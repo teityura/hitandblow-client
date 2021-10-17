@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HitBlow.Manager
 {
-    public class DrawManager : MonoBehaviour
+    public class GameSceneDrawManager : MonoBehaviour
     {
         [SerializeField]
         private Image[] inputNumberImages = null;
@@ -25,18 +25,18 @@ namespace HitBlow.Manager
             switch(phase)
             {
                 // TODO: SetAnswerNumbers() を他のクラスでやらせる
-                case GameManager.GAME_PHASE.START:
+                case GameManager.GAME_PHASE.GAME_START:
                     NumberManager.SetAnswerNumbers();
-                    GameManager.SetGamePhase(GameManager.GAME_PHASE.INPUT);
+                    GameManager.SetGamePhase(GameManager.GAME_PHASE.GAME_INPUT);
                     break;
-                case GameManager.GAME_PHASE.INPUT:
+                case GameManager.GAME_PHASE.GAME_INPUT:
                     RefreshInputPanels();
                     // NOTE: Submitボタンで、OUTPUTフェーズに切り替えている
                     break;
-                case GameManager.GAME_PHASE.OUTPUT:
+                case GameManager.GAME_PHASE.GAME_OUTPUT:
                     RefreshOutputPanels();
                     RefreshInformationPanel();
-                    GameManager.SetGamePhase(GameManager.GAME_PHASE.INPUT);
+                    GameManager.SetGamePhase(GameManager.GAME_PHASE.GAME_INPUT);
                     break;
                 default:
                     return;
@@ -93,7 +93,7 @@ namespace HitBlow.Manager
         private void RefreshInformationPanel()
         {
             int currentTurn = GameManager.CurrentTurn;
-            int currentPlayer = GameManager.CurrentPlayer;
+            int currentPlayer = (int)GameManager.CurrentPlayerNumber;
 
             informationPanel.SetTurnCounter(currentTurn);
             informationPanel.SetCurrentPlayer(currentPlayer);
