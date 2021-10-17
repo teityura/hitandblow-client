@@ -431,8 +431,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<color=#bb0000>Hit</color> and <color=#0000bb>Blow</color>\n~ 4\u6841\u306E\u6570\u5B57\u3092\u5F53\u3066\u3088\u3046
-    ~"
+  m_Text: "<color=#bb0000>\u30D2\u30C3\u30C8</color> & <color=#0000bb>\u30D6\u30ED\u30FC</color>\n~
+    4\u6841\u306E\u6570\u5B57\u3092\u5F53\u3066\u3088\u3046 ~"
 --- !u!222 &1005278253
 CanvasRenderer:
   m_ObjectHideFlags: 0

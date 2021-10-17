@@ -14,16 +14,16 @@ public class InformationPanel : MonoBehaviour
     {
         if (number % 2 == 1)
         {
-            currentPlayer.text = $"Player: <color=#bb0000>{number}</color>";
+            currentPlayer.text = $"プレイヤー: <color=#bb0000>{number}</color>";
         }
         else
         {
-            currentPlayer.text = $"Player: <color=#0000bb>{number}</color>";
+            currentPlayer.text = $"プレイヤー: <color=#0000bb>{number}</color>";
         }
     }
 
     public void SetTurnCounter(int number)
     {
-        turnCounter.text = $"Turn: <color=#90ee90>{number}</color>";
+        turnCounter.text = $"ターン: <color=#ff8c00>{number}</color>";
     }
 }

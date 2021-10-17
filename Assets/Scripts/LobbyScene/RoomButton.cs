@@ -27,7 +27,7 @@ namespace HitBlow.MyButton
 
         private void Start()
         {
-            roomText.text = roomName;
+            roomText.text = "ルーム: " + roomNumber.ToString();
             standardButton.OnClick(() => ToGameScene());
         }
 
