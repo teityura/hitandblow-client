@@ -67,7 +67,12 @@ namespace HitBlow.Manager
 
             for (int i=0; i<inputNumbers.Count; i++)
             {
-                if (answerNumbers.Contains(inputNumbers[i]))
+                if (inputNumbers[i] == answerNumbers[i])
+                {
+                    // ヒットならカウントしない
+                    continue;
+                }
+                else if (answerNumbers.Contains(inputNumbers[i]))
                 {
                     blowCount += 1;
                 }
