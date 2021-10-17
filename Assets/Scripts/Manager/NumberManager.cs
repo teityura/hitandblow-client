@@ -58,6 +58,12 @@ namespace HitBlow.Manager
                 }
             }
 
+            // ヒットが4つあれば、リザルトへの遷移を準備開始
+            if (hitCount == 4)
+            {
+                GameManager.SetGamePhase(GameManager.GAME_PHASE.GAME_END);
+            }
+
             return hitCount;
         }
 

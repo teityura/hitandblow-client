@@ -11,6 +11,9 @@
             GAME_START,
             GAME_INPUT,
             GAME_OUTPUT,
+            GAME_END,
+            RESULT_TIMER,
+            RESULT_START,
             END,
         }
         public static GAME_PHASE GamePhase { get; private set; } = GAME_PHASE.GAME_INPUT;
@@ -32,13 +35,21 @@
 
         public static void SetGamePhase(GAME_PHASE phase)
         {
-            GamePhase = phase;
-
             if (phase == GAME_PHASE.GAME_OUTPUT)
             {
                 SetNextTurn();
                 SetCurrentPlayer();
             }
+            // NOTE: GAME_ENDフェーズになると、INPUTフェーズには戻さない
+            else if (phase == GAME_PHASE.GAME_INPUT)
+            {
+                if (GamePhase == GAME_PHASE.GAME_END)
+                {
+                    return;
+                }
+            }
+
+            GamePhase = phase;
         }
 
         private static void SetNextTurn()

@@ -18,6 +18,9 @@ namespace HitBlow.Manager
         [SerializeField]
         private InformationPanel informationPanel = null;
 
+        [SerializeField]
+        private ToResultTimerPanel toResultTimerPanel = null;
+
         void Update()
         {
             GameManager.GAME_PHASE phase = GameManager.GamePhase;
@@ -29,12 +32,19 @@ namespace HitBlow.Manager
                     break;
                 case GameManager.GAME_PHASE.GAME_INPUT:
                     RefreshInputPanels();
-                    // NOTE: Submitボタンで、OUTPUTフェーズに切り替えている
                     break;
+                // NOTE: Submitボタンで、OUTPUTフェーズに切り替えている
                 case GameManager.GAME_PHASE.GAME_OUTPUT:
                     RefreshOutputPanels();
                     RefreshInformationPanel();
                     GameManager.SetGamePhase(GameManager.GAME_PHASE.GAME_INPUT);
+                    break;
+                // NOTE: GetHitNumberでhitが4個あれば、GAME_ENDフェーズに切り替えている
+                case GameManager.GAME_PHASE.GAME_END:
+                    StartCoroutine(toResultTimerPanel.ToResultScene());
+                    GameManager.SetGamePhase(GameManager.GAME_PHASE.RESULT_TIMER);
+                    break;
+                case GameManager.GAME_PHASE.RESULT_TIMER:
                     break;
                 default:
                     return;
