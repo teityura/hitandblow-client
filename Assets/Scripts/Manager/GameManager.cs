@@ -2,7 +2,7 @@
 {
     public static class GameManager
     {
-        // private static readonly int maxTern = 10;
+        private static readonly int maxTern = 10;
 
         public enum GAME_PHASE
         {
@@ -27,6 +27,7 @@
         public static int CurrentPlayerNumber { private set; get; } = (int)PLAYER.PLAYER1;
         public static int WinnerPlayerNumber { private set; get; } = 0;
         public static int CurrentTurn { private set; get; } = 1;
+        public static bool IsGameOver { private set; get; } = false;
         public static string RoomName = "Room1";
 
         public static void SetRoomName(string roomName)
@@ -39,6 +40,7 @@
             if (phase == GAME_PHASE.GAME_OUTPUT)
             {
                 bool isGameClear = NumberManager.GetHitCount() == 4;
+                bool isGameOver = CurrentTurn == maxTern;
 
                 if (isGameClear)
                 {
@@ -46,10 +48,15 @@
                     WinnerPlayerNumber = CurrentPlayerNumber;
                     return;
                 }
+                else if (isGameOver)
+                {
+                    GamePhase = GAME_PHASE.GAME_END;
+                    IsGameOver = true;
+                }
                 else
                 {
                     SetNextTurn();
-                    SetCurrentPlayer();
+                    ChangeCurrentPlayer();
                 }
             }
             // NOTE: GAME_ENDフェーズになると、INPUTフェーズには戻さない
@@ -69,7 +76,7 @@
             CurrentTurn += 1;
         }
 
-        private static void SetCurrentPlayer()
+        private static void ChangeCurrentPlayer()
         {
             CurrentPlayerNumber = CurrentTurn % 2 + 1;
         }
@@ -79,8 +86,9 @@
             WinnerPlayerNumber = playerNumber;
         }
 
-        public static void InitializeTurn()
+        public static void ResetGameState()
         {
+            IsGameOver = false;
             CurrentTurn = 0;
         }
     }

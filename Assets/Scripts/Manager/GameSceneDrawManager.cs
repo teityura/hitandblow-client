@@ -25,6 +25,8 @@ namespace HitBlow.Manager
         {
             GameManager.GAME_PHASE phase = GameManager.GamePhase;
 
+            // TODO: DrawManagerに描画処理だけをやらせて、
+            // フェーズのセットや管理は別のクラスにやらせる
             switch(phase)
             {
                 case GameManager.GAME_PHASE.GAME_START:
