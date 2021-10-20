@@ -17,7 +17,7 @@ namespace HitBlow.Manager
                 SetInputNumber(i, 0);
             }
 
-            answerNumbers.Clear();
+            answerNumbers?.Clear();
             SetAnswerNumbers();
         }
 
@@ -83,22 +83,31 @@ namespace HitBlow.Manager
         public static int GetBlowNumber()
         {
             int blowCount = 0;
+            List<int> hitAndBlowNumberList = new List<int>();
 
             for (int i=0; i<inputNumbers.Count; i++)
             {
+                // ヒット
                 if (inputNumbers[i] == answerNumbers[i])
                 {
-                    // ヒットならカウントしない
+                    hitAndBlowNumberList.Add(answerNumbers[i]);
                     continue;
                 }
+                // ブロー
                 else if (answerNumbers.Contains(inputNumbers[i]))
                 {
-                    blowCount += 1;
+                    // 初回のブローだけカウントする
+                    bool isFirstBlow = ! hitAndBlowNumberList.Contains(inputNumbers[i]);
+
+                    if (isFirstBlow)
+                    {
+                        hitAndBlowNumberList.Add(inputNumbers[i]);
+                        blowCount += 1;
+                    }
                 }
             }
 
             return blowCount;
-
         }
     }
 }
