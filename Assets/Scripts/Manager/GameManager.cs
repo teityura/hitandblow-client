@@ -67,6 +67,11 @@
         {
             WinnerPlayerNumber = playerNumber;
         }
+
+        public static void InitializeTurn()
+        {
+            CurrentTurn = 0;
+        }
     }
 }
 

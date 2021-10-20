@@ -36,6 +36,7 @@ namespace HitBlow.MyButton
             SceneManager.LoadScene("GameScene");
             GameManager.SetRoomName(roomName);
             GameManager.SetGamePhase(GameManager.GAME_PHASE.GAME_START);
+            GameManager.InitializeTurn();
             NumberManager.InitializeNumbers();
         }
     }
