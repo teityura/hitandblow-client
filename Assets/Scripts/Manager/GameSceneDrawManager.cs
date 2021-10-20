@@ -39,10 +39,11 @@ namespace HitBlow.Manager
                     RefreshInformationPanel();
                     GameManager.SetGamePhase(GameManager.GAME_PHASE.GAME_INPUT);
                     break;
-                // NOTE: GetHitNumberでhitが4個あれば、GAME_ENDフェーズに切り替えている
                 case GameManager.GAME_PHASE.GAME_END:
-                    StartCoroutine(toResultTimerPanel.ToResultScene());
+                    RefreshOutputPanels();
+                    RefreshInformationPanel();
                     GameManager.SetGamePhase(GameManager.GAME_PHASE.RESULT_TIMER);
+                    StartCoroutine(toResultTimerPanel.ToResultScene());
                     break;
                 case GameManager.GAME_PHASE.RESULT_TIMER:
                     break;

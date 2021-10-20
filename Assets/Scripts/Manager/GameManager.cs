@@ -38,8 +38,19 @@
         {
             if (phase == GAME_PHASE.GAME_OUTPUT)
             {
-                SetNextTurn();
-                SetCurrentPlayer();
+                bool isGameClear = NumberManager.GetHitCount() == 4;
+
+                if (isGameClear)
+                {
+                    GamePhase = GAME_PHASE.GAME_END;
+                    WinnerPlayerNumber = CurrentPlayerNumber;
+                    return;
+                }
+                else
+                {
+                    SetNextTurn();
+                    SetCurrentPlayer();
+                }
             }
             // NOTE: GAME_ENDフェーズになると、INPUTフェーズには戻さない
             else if (phase == GAME_PHASE.GAME_INPUT)
