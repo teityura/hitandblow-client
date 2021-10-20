@@ -22,9 +22,9 @@ namespace HitBlow.MyButton
 
         private void Up()
         {
-            int currentNumber = NumberManager.GetNumber(numberIndex);
+            int currentNumber = NumberManager.GetInputNumber(numberIndex);
             int nextNumber = (currentNumber == 9) ? 0 : currentNumber + 1;
-            NumberManager.SetNumber(numberIndex, nextNumber);
+            NumberManager.SetInputNumber(numberIndex, nextNumber);
         }
     }
 }

@@ -7,43 +7,55 @@ namespace HitBlow.Manager
     public static class NumberManager
     {
         private static readonly List<int> inputNumbers = new List<int> {0, 0, 0, 0};
-        private static readonly List<int> answerNumbers = SetAnswerNumbers();
 
-        public static List<int> SetAnswerNumbers()
+        private static List<int> answerNumbers = null;
+
+        public static void InitializeNumbers()
+        {            
+            for(int i=0; i<inputNumbers.Count; i++)
+            {
+                SetInputNumber(i, 0);
+            }
+
+            answerNumbers.Clear();
+            SetAnswerNumbers();
+        }
+
+        public static void SetInputNumber(int index, int number)
         {
-            List<int> answerNumbers = new List<int>();
+            inputNumbers[index] = number;
+        }
+
+        private static void SetAnswerNumbers()
+        {
+            List<int> randomNumbers = new List<int>();
 
             for (int i=0; i<inputNumbers.Count; i++)
             {
-                int randamNumber = Random.Range(0, 9);
+                int randomNumber = Random.Range(0, 9);
 
-                while (answerNumbers.Contains(randamNumber))
+                while (randomNumbers.Contains(randomNumber))
                 {
-                    randamNumber = Random.Range(0, 9);
+                    randomNumber = Random.Range(0, 9);
                 }
 
-                answerNumbers.Add(randamNumber);
+                randomNumbers.Add(randomNumber);
             }
 
-            // DEBUG answerNumbers
-            Debug.Log("answerNumbers: " + string.Join("", answerNumbers.Select(num => num.ToString())));
+            answerNumbers = randomNumbers;
 
-            return answerNumbers;
+            // DEBUG answerNumbers
+            Debug.Log("answerNumbers: " + string.Join("", randomNumbers.Select(num => num.ToString())));
         }
 
-        public static List<int> GetNumbers()
+        public static List<int> GetInputNumbers()
         {
             return inputNumbers;
         }
 
-        public static int GetNumber(int index)
+        public static int GetInputNumber(int index)
         {
             return inputNumbers[index];
-        }
-
-        public static void SetNumber(int index, int number)
-        {
-            inputNumbers[index] = number;
         }
 
         public static int GetHitNumber()

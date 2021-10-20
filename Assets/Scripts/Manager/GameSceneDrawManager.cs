@@ -55,7 +55,7 @@ namespace HitBlow.Manager
         {
             for (int i=0; i<inputNumberImages.Length; i++)
             {
-                int currentNumber = NumberManager.GetNumber(i);
+                int currentNumber = NumberManager.GetInputNumber(i);
                 inputNumberImages[i].sprite = SpriteManager.GetNumberSprite(currentNumber);
             }
         }
@@ -75,7 +75,7 @@ namespace HitBlow.Manager
 
         private void RefreshAnsweredNumber(AnsweredNumberPanel panel)
         {
-            List<int> inputNumbers = NumberManager.GetNumbers();
+            List<int> inputNumbers = NumberManager.GetInputNumbers();
             Sprite[] answeredNumberSprites = new Sprite[inputNumbers.Count];
 
             for (int i=0; i<inputNumbers.Count; i++)
