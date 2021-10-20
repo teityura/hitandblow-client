@@ -8,7 +8,10 @@ namespace HitBlow.Manager
     {
         private static readonly List<int> inputNumbers = new List<int> {0, 0, 0, 0};
 
+
         private static List<int> answerNumbers = null;
+        
+        public static string AnswerNumber { private set; get; } = "0000";
 
         public static void InitializeNumbers()
         {            
@@ -45,7 +48,8 @@ namespace HitBlow.Manager
             answerNumbers = randomNumbers;
 
             // DEBUG answerNumbers
-            Debug.Log("answerNumbers: " + string.Join("", randomNumbers.Select(num => num.ToString())));
+            AnswerNumber = string.Join("", randomNumbers.Select(num => num.ToString()));
+            Debug.Log($"AnswerNumber: {AnswerNumber}");
         }
 
         public static List<int> GetInputNumbers()

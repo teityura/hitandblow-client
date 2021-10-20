@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using HitBlow.Manager;
 
 namespace HitBlow.Manager
 {
@@ -11,7 +10,18 @@ namespace HitBlow.Manager
 
         private void Start()
         {
-            resultText.text = $"結果\n\nプレイヤー{GameManager.WinnerPlayerNumber}の勝ち！";
+            resultText.text = "結果:\n";
+
+            if (GameManager.IsGameOver)
+            {
+                resultText.text += $"ゲームオーバーです！\n";
+            }
+            else
+            {
+                resultText.text += $"<color=#0000bb>プレイヤー{GameManager.WinnerPlayerNumber}</color> の勝ち！\n";
+            }
+            
+            resultText.text += $"答えは <color=#bb0000bb>{NumberManager.AnswerNumber}</color>でした。";
         }
     }
 }
