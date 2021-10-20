@@ -25,6 +25,7 @@
         }
         public static readonly PLAYER MyPlayer = PLAYER.PLAYER1;
         public static int CurrentPlayerNumber { private set; get; } = (int)PLAYER.PLAYER1;
+        public static int WinnerPlayerNumber { private set; get; } = 0;
         public static int CurrentTurn { private set; get; } = 1;
         public static string RoomName = "Room1";
 
@@ -62,6 +63,10 @@
             CurrentPlayerNumber = CurrentTurn % 2 + 1;
         }
 
+        public static void SetWinnerPlayer(int playerNumber)
+        {
+            WinnerPlayerNumber = playerNumber;
+        }
     }
 }
 

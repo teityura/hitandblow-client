@@ -62,6 +62,7 @@ namespace HitBlow.Manager
             if (hitCount == 4)
             {
                 GameManager.SetGamePhase(GameManager.GAME_PHASE.GAME_END);
+                GameManager.SetWinnerPlayer(GameManager.CurrentPlayerNumber);
             }
 
             return hitCount;

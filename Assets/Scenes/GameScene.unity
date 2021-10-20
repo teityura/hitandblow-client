@@ -2562,7 +2562,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<color=#330066>\u30D7\u30EC\u30A4\u30E4\u30FCX</color>"
+  m_Text: "<color=#330066>\u30D7\u30EC\u30A4\u30E4\u30FC1</color>"
 --- !u!222 &1098345785
 CanvasRenderer:
   m_ObjectHideFlags: 0
