@@ -88,8 +88,8 @@ namespace HitBlow.Manager
 
         private void RefreshHitBlowNumber(AnsweredNumberPanel panel)
         {
-            int hit = NumberManager.GetHitNumber();
-            int blow = NumberManager.GetBlowNumber();
+            int hit = NumberManager.GetHitCount();
+            int blow = NumberManager.GetBlowCount();
 
             Sprite hitNumberSprite = SpriteManager.GetHitBlowNumberSprite(hit);
             Sprite blowNumberSprite = SpriteManager.GetHitBlowNumberSprite(blow);

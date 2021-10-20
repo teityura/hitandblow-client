@@ -58,7 +58,7 @@ namespace HitBlow.Manager
             return inputNumbers[index];
         }
 
-        public static int GetHitNumber()
+        public static int GetHitCount()
         {
             int hitCount = 0;
 
@@ -80,34 +80,31 @@ namespace HitBlow.Manager
             return hitCount;
         }
 
-        public static int GetBlowNumber()
+        public static int GetBlowCount()
         {
-            int blowCount = 0;
-            List<int> hitAndBlowNumberList = new List<int>();
+            List<int> hitNumberList = new List<int>();
+            List<int> blowNumberList = new List<int>();
 
             for (int i=0; i<inputNumbers.Count; i++)
             {
                 // ヒット
                 if (inputNumbers[i] == answerNumbers[i])
                 {
-                    hitAndBlowNumberList.Add(answerNumbers[i]);
-                    continue;
+                    hitNumberList.Add(inputNumbers[i]);
                 }
-                // ブロー
-                else if (answerNumbers.Contains(inputNumbers[i]))
-                {
-                    // 初回のブローだけカウントする
-                    bool isFirstBlow = ! hitAndBlowNumberList.Contains(inputNumbers[i]);
 
-                    if (isFirstBlow)
+                // ブロー
+                if (answerNumbers.Contains(inputNumbers[i]))
+                {
+                    // 初回のブローだけリストに追加
+                    if (!blowNumberList.Contains(inputNumbers[i]))
                     {
-                        hitAndBlowNumberList.Add(inputNumbers[i]);
-                        blowCount += 1;
+                        blowNumberList.Add(inputNumbers[i]);
                     }
                 }
             }
 
-            return blowCount;
+            return blowNumberList.Count - hitNumberList.Count;
         }
     }
 }
